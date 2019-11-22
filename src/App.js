@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Voice from "./util/Util";
+import Modulator from "./util/Modulator";
 
-function App() {
+const App = () => {
+  const handleClick = () => {
+    const soundFileName = Voice.Util.loadSound("../public/sample.mp3");
+    if (!soundFileName) {
+      console.warn("Sound File not selected.");
+      return;
+    }
+    // 音声ファイル内容をモジュレータとして読み込む
+    // Modulator.LoadSoundFile(soundFileName);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p className="loadSound" onClick={handleClick}>
+        Click
+      </p>
     </div>
   );
-}
+};
 
 export default App;
