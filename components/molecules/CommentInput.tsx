@@ -2,11 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 
 interface CommentInputProps {
-  value: string;
+  onChange?: () => void;
 }
-const CommentInput: React.FC<CommentInputProps> = ({ value }) => (
+const CommentInput: React.FC<CommentInputProps> = ({ onChange }) => (
   <Wrapper>
-    <input type="text" placeholder="コメントを入力" value={value} />
+    <input type="text" placeholder="コメントを入力" onChange={onChange} />
   </Wrapper>
 );
 
