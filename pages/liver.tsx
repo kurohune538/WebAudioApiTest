@@ -10,7 +10,8 @@ import HomeIcon from "../components/atoms/HomeIcon";
 import ViewCount from "../components/molecules/ViewCount";
 import AvatarView from "../components/organisms/AvatarView";
 
-interface HomeProps {
+interface LivePageProps {
+  title: string;
   count: number;
   comments: Comment[];
   restTime: Date;
@@ -21,7 +22,8 @@ interface HomeProps {
   avatar: string;
 }
 
-const Home: NextPage<HomeProps> = ({
+const LivePage: NextPage<LivePageProps> = ({
+  title,
   count,
   comments,
   restTime,
@@ -33,7 +35,7 @@ const Home: NextPage<HomeProps> = ({
 }) => (
   <Wrapper>
     <Head>
-      <title>ホーム | らいぶや</title>
+      <title>{title} | らいぶや</title>
     </Head>
 
     <LiveView>
@@ -52,8 +54,10 @@ const Home: NextPage<HomeProps> = ({
   </Wrapper>
 );
 
-Home.getInitialProps = async (ctx: any) => {
+LivePage.getInitialProps = async (ctx: any) => {
+  console.log(ctx);
   return {
+    title: ctx.query.title,
     count: 100,
     comments: [],
     restTime: null,
@@ -73,7 +77,7 @@ const Wrapper = styled.section`
 
 const LiveView = styled.div`
   display: flex;
-  background: #eee;
+  background: #333;
   min-width: 400px;
   max-width: 1000px;
   height: 100vh;
@@ -94,4 +98,4 @@ const BottomComponents = styled.div`
   z-index: 2;
 `;
 
-export default Home;
+export default LivePage;
