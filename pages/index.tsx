@@ -1,6 +1,9 @@
 import React from "react";
 import Head from "next/head";
 import styled from "@emotion/styled";
+import fetch from "isomorphic-unfetch";
+import { NextPage } from "next";
+
 import CommentListView, { Comment } from "../components/organisms/CommentListView";
 import LiverInfo from "../components/organisms/LiverInfo";
 import CommentInput from "../components/molecules/CommentInput";
@@ -18,7 +21,8 @@ interface HomeProps {
   backgroundImg: string;
   avatar: string;
 }
-const Home: React.FC<HomeProps> = ({
+
+const Home: NextPage<HomeProps> = ({
   count,
   comments,
   restTime,
@@ -48,6 +52,19 @@ const Home: React.FC<HomeProps> = ({
     </LiveView>
   </Wrapper>
 );
+
+Home.getInitialProps = async (ctx: any) => {
+  return {
+    count: 100,
+    comments: [],
+    restTime: null,
+    liverName: "string",
+    liverImg: "",
+    inputtedComment: "",
+    backgroundImg: "",
+    avatar: "",
+  };
+};
 
 const Wrapper = styled.section`
   display: flex;

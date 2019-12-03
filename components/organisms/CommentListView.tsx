@@ -8,17 +8,18 @@ export type Comment = {
 };
 
 interface CommentListViewProps {
-  comments: Comment[];
+  comments?: Comment[];
 }
 const CommentListView: React.FC<CommentListViewProps> = ({ comments }) => (
   <Wrapper>
     <ul>
-      {comments.map((comment: Comment, i: number) => (
-        <li key={i}>
-          <span>{comment.name}</span>
-          <span>{comment.contents}</span>
-        </li>
-      ))}
+      {comments &&
+        comments.map((comment: Comment, i: number) => (
+          <li key={i}>
+            <span>{comment.name}</span>
+            <span>{comment.contents}</span>
+          </li>
+        ))}
     </ul>
   </Wrapper>
 );
